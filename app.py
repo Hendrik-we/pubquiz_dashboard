@@ -36,32 +36,28 @@ body = [
         id = "dynamic-container",
         children = [
             html.Div(className= "line"),
+            html.Hr(),
             content,
             html.Br(),
             html.Hr(),
-            html.Div("@Hendrik.we on GitHub")
+            html.Div("@Hendrik-we on GitHub")
         ]
     )
 ]
 
 app.layout = dmc.MantineProvider(html.Div(children = body))
 
-@app.callback(
-    Output("url", "pathname"),
-    Input("finish_custom", "n_clicks"),
-    Input("quiz_name", "value"),
-    Input("category_slider", "value"),
-    Input("level_slider", "value"),
-    Input("difficulty_chip"),
-    Input("answer_slider", "value")
 
+@app.callback(
+    Output("url", "pathname", allow_duplicate= True),
+    Input("start_custom", "n_clicks"),
+    prevent_initial_call = True
 )
 def finish_customization(n_clicks):
     if n_clicks:
-        return"/teams"
+        return"/customization"
     else:
         return "/"
-
 
 
 if __name__ == "__main__":
